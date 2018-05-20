@@ -15,9 +15,12 @@ dotenv.config({path: './.env'});
 
 app.use(morgan('common'));
 app.use(express.static('browser'));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+// app.use(bodyParser.urlencoded({
+//   extended: true
+// }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 app.use(bodyParser.json());
 
 app.use(express.static('public'));

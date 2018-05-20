@@ -18,8 +18,7 @@ const  drawingSchema = mongoose.Schema({
     ref: 'User'
   },
   canvas: {
-    data: Buffer,
-    contentType: String
+    type: String
   }
 });
 

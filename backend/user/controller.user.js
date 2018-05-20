@@ -89,7 +89,7 @@ exports.loginUser = (req, res) => {
       })
       return;
     }
-    //at this point, the user exists ANd the passwords are the same
+    //at this point, the user exists AND the passwords are the same
     //token is created!
     let userToken = {
       username: user.username,
@@ -110,4 +110,17 @@ exports.loginUser = (req, res) => {
   .catch((err) => {
     console.log(err);
   })
+}
+
+//
+exports.refreshUser = (req, res) => {
+  const authToken = createAuthToken(req.user);
+   res.json({authToken});
+};
+exports.createAuthToken = (user) => {
+  return jwt.sign({user}, config.JWT_SECRET, {
+  subject: user.username,
+  expiresIn: config.JWT_EXPIRY,
+  algorithm: 'HS256'
+});
 }

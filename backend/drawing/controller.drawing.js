@@ -54,7 +54,7 @@ exports.getDrawing = (req, res) => {
 };
 
 exports.createDrawing = (req, res) => {
-  const requiredFields = ['entryText'];
+  const requiredFields = ['canvas', 'instruction'];
 
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -68,7 +68,8 @@ exports.createDrawing = (req, res) => {
 
   drawingModel
     .create({
-      entryText: req.body.entryText,
+      instruction: req.body.instruction,
+      canvas: req.body.canvas,
       userId: req.user.id
     })
     .then(drawing => res.status(201).json(drawing.serialize()))
@@ -78,33 +79,6 @@ exports.createDrawing = (req, res) => {
     });
 };
 
-
-exports.addDrawing = (req, res) => {
-  // ensure that the id in the request path and the one in request body match
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message = (
-      `Request path id (${req.params.id}) and request body id ` +
-      `(${req.body.id}) must match`);
-    console.error(message);
-    return res.status(400).json({ message: message });
-  }
-
-  const toUpdate = {};
-  const updateableFields = ['title', 'description', 'bookId', 'author', 'image'];
-  updateableFields.forEach(field => {
-    if (field in req.body) {
-      toUpdate[field] = req.body[field];
-    }
-  });
-
-  drawingModel
-    .findByIdAndUpdate(req.params.id, { $push: {books: toUpdate }})
-    // .then(drawing => res.status(204).end())
-    .then(drawing => {
-      res.status(204).end()
-    })
-    .catch(err => res.status(500).json({ message: 'Internal server error' }));
-};
 
 exports.deleteDrawing = (req, res) => {
   drawingModel
