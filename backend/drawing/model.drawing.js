@@ -17,9 +17,12 @@ const  drawingSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  canvas: {
-    type: String
-  }
+
+  canvas: []
+  //
+  // canvas: {
+  //   type: String
+  // }
 });
 
 drawingSchema.methods.serialize = function() {

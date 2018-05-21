@@ -66,6 +66,10 @@ function closeServer() {
 
 app.use('/drawings', drawingRoutes);
 app.use('/user', userRoutes);
+app.use('/', (req, res) => {
+  res.status(200).json({ message: 'hello' });
+
+});
 
 app.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
