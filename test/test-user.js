@@ -19,6 +19,7 @@ const recModel = require('../backend/drawing/model.drawing');
 chai.use(chaiHttp);
 
 describe('User API', function() {
+  this.timeout(15000);
   const username = "puffyCloud";
   const password = "raincloud";
   const firstName = "alto";
