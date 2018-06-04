@@ -18,11 +18,11 @@ const  drawingSchema = mongoose.Schema({
     ref: 'User'
   },
 
-  canvas: []
-  //
-  // canvas: {
-  //   type: String
-  // }
+  // canvas: []
+
+  canvas: {
+    type: String
+  }
 });
 
 drawingSchema.methods.serialize = function() {

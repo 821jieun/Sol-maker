@@ -112,11 +112,6 @@ exports.loginUser = (req, res) => {
   })
 }
 
-//
-// exports.refreshUser = (req, res) => {
-//   const authToken = createAuthToken(req.user);
-//    res.json({authToken});
-// };
 // exports.createAuthToken = (user) => {
 //     return jwt.sign({user}, config.JWT_SECRET, {
 //     subject: user.username,

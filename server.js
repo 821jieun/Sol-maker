@@ -31,7 +31,8 @@ let server;
 function runServer(databaseUrl = MONGOLAB_URI, port = PORT) {
 
   return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, err => {
+    // mongoose.connect(databaseUrl, err => {
+    mongoose.connect('mongodb://user:password@ds129670.mlab.com:29670/a-little-sol', err => {
 
       if (err) {
         return reject(err);
@@ -62,14 +63,9 @@ function closeServer() {
   });
 }
 
-
-
 app.use('/drawings', drawingRoutes);
 app.use('/user', userRoutes);
-app.use('/', (req, res) => {
-  res.status(200).json({ message: 'hello' });
 
-});
 
 app.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
