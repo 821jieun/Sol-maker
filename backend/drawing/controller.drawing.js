@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config');
 
 exports.verifyToken = (req, res, next) => {
+  if (req.method === 'OPTIONS') { res.writeHead(200) res.end() return }
   const token = req.headers.authorization || req.params.token;
 
   if (!token) {
