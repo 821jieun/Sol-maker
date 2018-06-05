@@ -12,7 +12,6 @@ router.use((req, res, next) => {
 
 router.get('/all/:token', drawingController.verifyToken, drawingController.getAllDrawings);
 router.post('/create/:token', drawingController.verifyToken, drawingController.createDrawing);
-// router.put('/update/:id/:token', drawingController.verifyToken, drawingController.addACanvasToDrawing);
 router.delete('/delete/:id/:token', drawingController.verifyToken, drawingController.deleteDrawing);
-// router.delete('/delete/singlecanvas/:id/:canvasId/:token', drawingController.verifyToken, drawingController.deleteSingleCanvas);
+
 module.exports = router;
